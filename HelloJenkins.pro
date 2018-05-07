@@ -25,8 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 INCLUDEPATH += "C:\Users\manoj.kumar\Documents\GitHub"
 
-LIBS += -L"C:\Users\manoj.kumar\Documents\GitHub\gtest" -lgtest
-
+#LIBS += -L"C:\Users\manoj.kumar\Documents\GitHub\gtest" -lgtest
+LIBS += -L"C:\Users\manoj.kumar\source\repos\Sample-Test2\packages\Microsoft.googletest.v140.windesktop.msvcstl.static.rt-dyn.1.8.0\lib\native\v140\windesktop\msvcstl\static\rt-dyn\x86\Debug" -lgtest
 SOURCES += \
         main.cpp \
         mainwindow.cpp
