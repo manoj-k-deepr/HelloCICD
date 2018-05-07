@@ -10,5 +10,6 @@ int main(int argc, char *argv[])
     qDebug() <<" Running Test ";
 //    ::testing::InitGoogleTest(&argc, argv);
 //    return RUN_ALL_TESTS();
+    exit(0);
     return a.exec();
 }
