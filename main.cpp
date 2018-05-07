@@ -8,13 +8,13 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    std::cout <<" Running Test 1";
-    std::cout <<" Running Test 2";
-    std::cout <<" Running Test 3";
-    std::cout <<" Running Test 4";
-    std::cout <<" Running Test 5";
-    std::cout <<" Running Test 6";
-    std::cout <<" Running Test Failed";
+    std::cout <<" Running Test 1\n";
+    std::cout <<" Running Test 2\n";
+    std::cout <<" Running Test 3\n";
+    std::cout <<" Running Test 4\n";
+    std::cout <<" Running Test 5\n";
+    std::cout <<" Running Test 6\n";
+    std::cout <<" Running Test Failed\n";
 
 
 //    ::testing::InitGoogleTest(&argc, argv);
