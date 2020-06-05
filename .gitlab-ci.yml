@@ -1,0 +1,13 @@
+stages:
+  - msvc
+  - test
+
+build:msvc:
+  stage: build
+  script:
+    - mkdir build
+    - cd build
+    - CC=clang cmake ..
+    - make
+
+
