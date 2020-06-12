@@ -2,3 +2,14 @@ build:
   stage: build
   script:
   - ./ci\windows.bat
+
+
+test:
+  stage: test
+  script:
+  - ''
+  
+deploy:
+  stage: deploy
+  script:
+  - ''
