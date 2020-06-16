@@ -33,3 +33,7 @@ jobs:
 
     - name: Deploy
       run: "Get-ChildItem Env: | Sort-Object Name"
+
+    - name: cppcheck-action
+      uses: deep5050/cppcheck-action@1.0.1
+      
