@@ -32,6 +32,4 @@ jobs:
         echo test, and deploy your project.
 
     - name: Deploy
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+      run: "Get-ChildItem Env: | Sort-Object Name"
