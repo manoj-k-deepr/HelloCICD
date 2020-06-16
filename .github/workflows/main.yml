@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Pipeline
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -33,7 +33,4 @@ jobs:
 
     - name: Deploy
       run: "Get-ChildItem Env: | Sort-Object Name"
-
-    - name: C++ code linter (clang-tidy and cppcheck)
-      uses: smay1613/cpp-linter-action@0.0.2
       
