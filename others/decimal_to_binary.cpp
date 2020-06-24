@@ -8,6 +8,14 @@
  * This method converts the bit representation and stores it as a decimal
  * number.
  */
+/**
+ * This method converts the bit representation and stores it as a decimal
+ * number.
+ */
+/**
+ * This method converts the bit representation and stores it as a decimal
+ * number.
+ */
 void method1(int number) {
     int remainder, binary = 0, var = 1;
 
