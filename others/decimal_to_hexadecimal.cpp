@@ -8,6 +8,12 @@
 /**
  * Main program
  */
+/**
+ * Main program
+ */
+/**
+ * Main program
+ */
 int main(void) {
     int valueToConvert = 0;  // Holds user input
     int hexArray[8];         // Contains hex values backwards
