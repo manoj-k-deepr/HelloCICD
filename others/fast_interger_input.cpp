@@ -8,6 +8,12 @@
 /** Function to read the number from stdin. The function reads input until a non
  * numeric character is entered.
  */
+/** Function to read the number from stdin. The function reads input until a non
+ * numeric character is entered.
+ */
+/** Function to read the number from stdin. The function reads input until a non
+ * numeric character is entered.
+ */
 void fastinput(int *number) {
     // variable to indicate sign of input integer
     bool negative = false;
