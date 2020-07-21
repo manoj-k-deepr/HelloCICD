@@ -3,6 +3,11 @@ stages:
   - test
   - deploy
 
+#-----------  Job Informations----------
+# Type:       Build: release/debug
+# OS:         windows
+# Compiler:   vs2017
+
 windows:build:
   stage: build
   script:
@@ -11,6 +16,12 @@ windows:build:
   tags:
      - windows
      - shared
+  artifacts:
+    paths:
+        - build/
+  cache:
+    paths:
+        - build/
 
 windows:test:
   stage: test
@@ -27,6 +38,13 @@ windows:deploy:
      - windows
      - shared
 
+
+
+#-----------  Job Informations----------
+# Type:       Build: release/debug
+# OS:         Linux
+# Compiler:   gcc
+
 linux:build:
   stage: build
   script:
@@ -37,7 +55,13 @@ linux:build:
   tags:
      - linux
      - shared
-
+  artifacts:
+    paths:
+        - build/
+  cache:
+    paths:
+        - build/
+        
 linux:test:
   stage: test
   script: 
