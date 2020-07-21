@@ -29,6 +29,7 @@ build-linux:
   stage: build
   script:
     - whoami
+    - chmod +x "ci/linux-prepare.sh"
     - "ci/linux-prepare.sh"
     - "ci/linux-build.sh"
   tags:
