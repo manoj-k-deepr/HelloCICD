@@ -28,8 +28,8 @@ deploy-windows:
 build-linux:
   stage: build
   script:
-    - whoami
     - chmod +x "ci/linux-prepare.sh"
+    - chmod +x "ci/linux-build.sh"
     - "ci/linux-prepare.sh"
     - "ci/linux-build.sh"
   tags:
@@ -38,14 +38,18 @@ build-linux:
 
 test-linux:
   stage: test
-  script: "ci/linux-test.sh"
+  script: 
+    - chmod +x "ci/linux-test.sh"
+    - "ci/linux-test.sh"
   tags:
      - linux
      - shared
 
 deploy-linux:
   stage: deploy
-  script: "ci/linux-deploy.sh"
+  script:
+    - chmod +x "ci/linux-deploy.sh"
+    - "ci/linux-deploy.sh"
   tags:
      - linux
      - shared
