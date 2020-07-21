@@ -11,4 +11,4 @@ ECHO %PATH%
 git --version
 qmake --version
 
-qmake HelloJenkins.pro -spec win32-msvc "CONFIG+=release" && C:\Qt\Qt5.12.1\Tools\QtCreator\bin\jom.exe qmake_all clean
+

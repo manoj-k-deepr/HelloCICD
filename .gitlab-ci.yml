@@ -8,12 +8,37 @@ build-windows:
   script:
     - "ci\\windows-prepare.bat"
     - "ci\\windows-build.bat"
-
+  tags:
+     - windows
 
 test-windows:
   stage: test
   script: "ci\\windows-test.bat"
-  
+    tags:
+     - windows
+
 deploy-windows:
   stage: deploy
   script: "ci\\windows-deploy.bat"
+  tags:
+     - windows
+
+build-linux:
+  stage: build
+  script:
+    - "ci\\linux-prepare.sh"
+    - "ci\\linux-build.sh"
+  tags:
+     - linux
+
+test-linux:
+  stage: test
+  script: "ci\\linux-test.sh"
+  tags:
+     - linux
+
+deploy-linux:
+  stage: deploy
+  script: "ci\\linux-deploy.sh"
+  tags:
+     - linux
