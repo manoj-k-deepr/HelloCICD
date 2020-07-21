@@ -3,7 +3,7 @@ stages:
   - test
   - deploy
 
-build-windows:
+windows:build:
   stage: build
   script:
     - "ci\\windows-prepare.bat"
@@ -12,14 +12,14 @@ build-windows:
      - windows
      - shared
 
-test-windows:
+windows:test:
   stage: test
   script: "ci\\windows-test.bat"
   tags:
     - windows
     - shared
 
-deploy-windows:
+windows:deploy:
   stage: deploy
   script: 
     - "ci\\windows-build.bat"
@@ -27,7 +27,7 @@ deploy-windows:
      - windows
      - shared
 
-build-linux:
+linux:build:
   stage: build
   script:
     - chmod +x "ci/linux-prepare.sh"
@@ -38,7 +38,7 @@ build-linux:
      - linux
      - shared
 
-test-linux:
+linux:test:
   stage: test
   script: 
     - chmod +x "ci/linux-test.sh"
@@ -47,7 +47,7 @@ test-linux:
      - linux
      - shared
 
-deploy-linux:
+linux:deploy:
   stage: deploy
   script:
     - chmod +x "ci/linux-deploy.sh"
