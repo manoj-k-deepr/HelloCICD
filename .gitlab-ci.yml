@@ -10,6 +10,7 @@ build-windows:
     - "ci\\windows-build.bat"
   tags:
      - windows
+     - shared
 
 test-windows:
   stage: test
@@ -22,6 +23,7 @@ deploy-windows:
   script: "ci\\windows-deploy.bat"
   tags:
      - windows
+     - shared
 
 build-linux:
   stage: build
@@ -30,15 +32,18 @@ build-linux:
     - "ci\\linux-build.sh"
   tags:
      - linux
+     - shared
 
 test-linux:
   stage: test
   script: "ci\\linux-test.sh"
   tags:
      - linux
+     - shared
 
 deploy-linux:
   stage: deploy
   script: "ci\\linux-deploy.sh"
   tags:
      - linux
+     - shared
