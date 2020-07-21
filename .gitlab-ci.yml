@@ -28,6 +28,7 @@ deploy-windows:
 build-linux:
   stage: build
   script:
+    - whoami
     - "ci/linux-prepare.sh"
     - "ci/linux-build.sh"
   tags:
