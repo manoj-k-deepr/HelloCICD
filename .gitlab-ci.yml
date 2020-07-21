@@ -1,15 +1,19 @@
-build:
+stages:
+  - build
+  - test
+  - deploy
+
+build-windows:
   stage: build
   script:
-  - ./ci\windows.bat
+    - "ci\\windows-prepare.bat"
+    - "ci\\windows-build.bat"
 
 
-test:
+test-windows:
   stage: test
-  script:
-  - ''
+  script: "ci\\windows-test.bat"
   
-deploy:
+deploy-windows:
   stage: deploy
-  script:
-  - ''
+  script: "ci\\windows-deploy.bat"
