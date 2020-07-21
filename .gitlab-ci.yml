@@ -14,8 +14,8 @@ build-windows:
 test-windows:
   stage: test
   script: "ci\\windows-test.bat"
-    tags:
-     - windows
+  tags:
+    - windows
 
 deploy-windows:
   stage: deploy
