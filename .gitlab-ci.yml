@@ -28,22 +28,22 @@ deploy-windows:
 build-linux:
   stage: build
   script:
-    - "ci\\linux-prepare.sh"
-    - "ci\\linux-build.sh"
+    - "ci/linux-prepare.sh"
+    - "ci/linux-build.sh"
   tags:
      - linux
      - shared
 
 test-linux:
   stage: test
-  script: "ci\\linux-test.sh"
+  script: "ci/linux-test.sh"
   tags:
      - linux
      - shared
 
 deploy-linux:
   stage: deploy
-  script: "ci\\linux-deploy.sh"
+  script: "ci/linux-deploy.sh"
   tags:
      - linux
      - shared
