@@ -17,6 +17,7 @@ test-windows:
   script: "ci\\windows-test.bat"
   tags:
     - windows
+    - shared
 
 deploy-windows:
   stage: deploy
