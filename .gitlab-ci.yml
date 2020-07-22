@@ -29,6 +29,7 @@ windows:test:
   tags:
     - windows
     - shared
+  when: on_success
 
 windows:deploy:
   stage: deploy
@@ -37,6 +38,7 @@ windows:deploy:
   tags:
      - windows
      - shared
+  when: on_success
 
 
 
@@ -61,6 +63,7 @@ linux:build:
   cache:
     paths:
         - build/
+  when: on_success
         
 linux:test:
   stage: test
@@ -70,6 +73,7 @@ linux:test:
   tags:
      - linux
      - shared
+  when: on_success
 
 linux:deploy:
   stage: deploy
@@ -79,3 +83,4 @@ linux:deploy:
   tags:
      - linux
      - shared
+  when: on_success
