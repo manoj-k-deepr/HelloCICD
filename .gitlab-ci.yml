@@ -11,8 +11,8 @@ stages:
 windows:build:
   stage: build
   script:
-    - "ci\\windows-prepare.bat"
-    - "ci\\windows-build.bat"
+    - ./ci/windows-prepare.bat
+    - ./ci/windows-build.bat
   only:
     refs:
       - master
@@ -31,13 +31,13 @@ windows:build:
 windows:test:
   stage: test
   script:
-    - "ci\\windows-test.bat"
+    - ./ci/windows-test.bat
   when: on_success
 
 windows:deploy:
   stage: deploy
   script: 
-    - "ci\\windows-build.bat"
+    - ./ci/windows-build.bat
   when: on_success
 
 
