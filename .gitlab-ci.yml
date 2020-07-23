@@ -49,6 +49,7 @@ windows:coverage:
   stage: coverage
   script:
     - ./ci/windows-coverage.bat
+  needs: ["windows:test"]
   when: on_success
   artifacts:
     paths:
@@ -63,7 +64,7 @@ windows:deploy:
   stage: deploy
   script: 
     - ./ci/windows-build.bat
-  needs: ["windows:test"]
+  needs: ["windows:coverage"]
   when: on_success
 
 #-----------  Job Informations----------
