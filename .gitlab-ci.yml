@@ -9,6 +9,7 @@ stages:
       - master
       - schedules
       - devops
+      - merge_requests
 
 #-----------  Job Informations----------
 # Type:       Build: release/debug
