@@ -20,7 +20,7 @@ windows:build:
       - devops
   tags:
      - windows
-     - shared
+     - deepranalytics
   artifacts:
     paths:
         - build/
@@ -59,7 +59,7 @@ linux:build:
       - devops
   tags:
      - linux
-     - shared
+     - deepranalytics
   artifacts:
     paths:
         - build/
