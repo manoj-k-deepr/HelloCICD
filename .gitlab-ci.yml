@@ -50,6 +50,12 @@ windows:coverage:
   script:
     - ./ci/windows-coverage.bat
   when: on_success
+  artifacts:
+    paths:
+        - cppreport/
+  cache:
+    paths:
+      - cppreport/
 
 windows:deploy:
   extends:
