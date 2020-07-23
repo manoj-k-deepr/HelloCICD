@@ -32,12 +32,14 @@ windows:test:
   stage: test
   script:
     - ./ci/windows-test.bat
+  needs: ["windows:build"]
   when: on_success
 
 windows:deploy:
   stage: deploy
   script: 
     - ./ci/windows-build.bat
+  needs: ["windows:test"]
   when: on_success
 
 
@@ -75,6 +77,7 @@ linux:test:
     - chmod +x "ci/linux-test.sh"
     - "ci/linux-test.sh"
   when: on_success
+  needs: ["linux:build"]
 
 linux:deploy:
   stage: deploy
@@ -82,3 +85,4 @@ linux:deploy:
     - chmod +x "ci/linux-deploy.sh"
     - "ci/linux-deploy.sh"
   when: on_success
+  needs: ["linux:test"]
