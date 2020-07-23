@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - coverage
   - deploy
 
 .only-branches:
@@ -40,6 +41,14 @@ windows:test:
   script:
     - ./ci/windows-test.bat
   needs: ["windows:build"]
+  when: on_success
+
+windows:coverage:
+  extends:
+    - .only-branches
+  stage: coverage
+  script:
+    - ./ci/windows-coverage.bat
   when: on_success
 
 windows:deploy:
