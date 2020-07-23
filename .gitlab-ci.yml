@@ -40,7 +40,6 @@ windows:deploy:
   when: on_success
 
 
-
 #-----------  Job Informations----------
 # Type:       Build: release/debug
 # OS:         Linux
