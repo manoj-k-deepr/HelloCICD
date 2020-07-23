@@ -48,7 +48,7 @@ windows:coverage:
     - .only-branches
   stage: coverage
   script:
-    - "ci//windows-coverage.bat"
+    - ./ci/windows-coverage.bat
   when: on_success
 
 windows:deploy:
