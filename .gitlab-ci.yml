@@ -13,6 +13,11 @@ windows:build:
   script:
     - "ci\\windows-prepare.bat"
     - "ci\\windows-build.bat"
+  only:
+    refs:
+      - master
+      - schedules
+      - devops
   tags:
      - windows
      - shared
@@ -26,18 +31,12 @@ windows:build:
 windows:test:
   stage: test
   script: "ci\\windows-test.bat"
-  tags:
-    - windows
-    - shared
   when: on_success
 
 windows:deploy:
   stage: deploy
   script: 
     - "ci\\windows-build.bat"
-  tags:
-     - windows
-     - shared
   when: on_success
 
 
@@ -54,6 +53,11 @@ linux:build:
     - chmod +x "ci/linux-build.sh"
     - "ci/linux-prepare.sh"
     - "ci/linux-build.sh"
+  only:
+    refs:
+      - master
+      - schedules
+      - devops
   tags:
      - linux
      - shared
@@ -70,9 +74,6 @@ linux:test:
   script: 
     - chmod +x "ci/linux-test.sh"
     - "ci/linux-test.sh"
-  tags:
-     - linux
-     - shared
   when: on_success
 
 linux:deploy:
@@ -80,7 +81,4 @@ linux:deploy:
   script:
     - chmod +x "ci/linux-deploy.sh"
     - "ci/linux-deploy.sh"
-  tags:
-     - linux
-     - shared
   when: on_success
