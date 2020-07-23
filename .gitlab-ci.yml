@@ -30,7 +30,8 @@ windows:build:
 
 windows:test:
   stage: test
-  script: "ci\\windows-test.bat"
+  script:
+    - "ci\\windows-test.bat"
   when: on_success
 
 windows:deploy:
