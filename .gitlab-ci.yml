@@ -48,7 +48,7 @@ windows:coverage:
     - .only-branches
   stage: coverage
   script:
-    - ./ci/windows-coverage.bat
+    - ./ci/windows_coverage.bat
   when: on_success
 
 windows:deploy:
@@ -104,3 +104,19 @@ linux:deploy:
     - "ci/linux-deploy.sh"
   when: on_success
   needs: ["linux:test"]
+
+
+
+  # deploy coverage report
+
+pages:
+  extends:
+    - .only-branches
+  stage: deploy
+  script:
+  - mkdir .public
+  - cp -r cppreport/* .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
