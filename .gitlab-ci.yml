@@ -12,7 +12,7 @@ stages:
       - devops
       - merge_requests 
 
-#some comment
+#some comment 2
 #-----------  Job Informations----------
 # Type:       Build: release/debug
 # OS:         windows
