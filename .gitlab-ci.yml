@@ -4,14 +4,7 @@ stages:
   - coverage
   - deploy
 
-include:
-  - template: SAST.gitlab-ci.yml
-variables:
-  SAST_GOSEC_LEVEL: 2
 
-spotbugs-sast:
-  variables:
-    FAIL_NEVER: 1
 
 # Code Quality Widget
 include:
