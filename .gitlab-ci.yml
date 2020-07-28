@@ -13,13 +13,13 @@ spotbugs-sast:
   variables:
     FAIL_NEVER: 1
     
-before_script:
-  - docker info
+#before_script:
+#  - docker info
 
-build_image:
-  script:
-    - docker build -t my-docker-image .
-    - docker run my-docker-image /script/to/run/tests
+#build_image:
+#  script:
+#    - docker build -t my-docker-image .
+#    - docker run my-docker-image /script/to/run/tests
     
 .only-branches:
   only:
@@ -119,6 +119,22 @@ linux:test:
     - "ci/linux-test.sh"
   when: on_success
   needs: ["linux:build"]
+
+windows:coverage:
+  extends:
+    - .only-branches
+  stage: coverage
+  script:
+    - docker pull codeclimate/codeclimate
+    - docker run \
+  --interactive --tty --rm \
+  --env CODECLIMATE_CODE="$PWD" \
+  --volume "$PWD":/code \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
+  --volume /tmp/cc:/tmp/cc \
+  codeclimate/codeclimate help
+  
+  needs: ["linux:test"]
 
 linux:deploy:
   extends:
