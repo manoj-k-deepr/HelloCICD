@@ -121,7 +121,7 @@ linux:test:
   when: on_success
   needs: ["linux:build"]
 
-windows:coverage:
+linux:coverage:
   extends:
     - .only-branches
   stage: coverage
