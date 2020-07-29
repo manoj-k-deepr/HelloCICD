@@ -6,15 +6,13 @@ stages:
 
 
 
-default:
-  image: ruby:2.5
-
-rspec:
-  script: bundle exec rspec
-
-rspec 2.6:
-  image: ruby:2.6
-  script: bundle exec rspec
+Test Docker:
+  stage: build
+  image: docker
+  services:
+  - docker:dind
+  script:
+  - docker run hello-world
   tags:
     - docker
 
