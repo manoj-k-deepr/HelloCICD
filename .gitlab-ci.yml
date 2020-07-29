@@ -12,7 +12,8 @@ Test Docker:
   services:
   - docker:dind
   script:
-    - docker info
+    - whoami
+    - sudo docker info
 #  - sudo docker run hello-world
   tags:
     - docker
