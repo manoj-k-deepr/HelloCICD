@@ -6,29 +6,15 @@ stages:
 
 
 
-# Code Quality Widget
-include:
-  - template: Code-Quality.gitlab-ci.yml
+default:
+  image: ruby:2.5
 
-code_quality:
-  stage: build
-  image: docker:stable
-  allow_failure: true
-  services:
-    - docker:stable-dind
-  variables:
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
-  script:
-    - docker info
-    - docker run 
-       --env CODECLIMATE_DEBUG=1 
-       --env CODECLIMATE_CODE="$PWD" 
-       --volume "$PWD":/code 
-       --volume /var/run/docker.sock:/var/run/docker.sock 
-       --volume /tmp/cc:/tmp/cc 
-       codeclimate/codeclimate:0.85.2 analyze -f html > report.html
+rspec:
+  script: bundle exec rspec
 
+rspec 2.6:
+  image: ruby:2.6
+  script: bundle exec rspec
   tags:
     - docker
 
