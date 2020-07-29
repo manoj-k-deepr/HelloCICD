@@ -13,7 +13,7 @@ Test Docker:
   - docker:dind
   script:
     - whoami
-    - sudo docker info
+    - docker info
 #  - sudo docker run hello-world
   tags:
     - docker
