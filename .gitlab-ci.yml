@@ -137,6 +137,8 @@ linux:coverage:
   script:
     - echo ""
   needs: ["linux:test"]
+  tags:
+     - docker-runner
 
 linux:deploy:
   extends:
