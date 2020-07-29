@@ -15,11 +15,11 @@ Test Docker:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
-
+    # https://gitlab.com/gitlab-org/gitlab-foss/-/issues/64959
   script:
     - whoami
     - docker info
-#  - sudo docker run hello-world
+    - docker run hello-world
   tags:
     - docker
 
