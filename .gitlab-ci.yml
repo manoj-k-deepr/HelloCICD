@@ -5,7 +5,7 @@ stages:
   - deploy
 
 
-
+# Docker-in-Docker workflow with Docker executor
 Hello Docker:
   stage: build
   image: docker
