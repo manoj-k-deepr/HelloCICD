@@ -30,8 +30,7 @@ code_quality:
        codeclimate/codeclimate:0.85.2 analyze -f html > report.html
 
   tags:
-    - linux
-    - deepranalytics
+    - docker
 
 #before_script:
 #  - docker info
