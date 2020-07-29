@@ -12,7 +12,7 @@ Test Docker:
   services:
   - docker:dind
   script:
-  - docker run hello-world
+  - sudo docker run hello-world
   tags:
     - docker
 
