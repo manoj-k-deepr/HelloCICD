@@ -50,8 +50,6 @@ windows:build:
     - .only-branches
   stage: build
   script:
-    - set /p Build=<version.txt
-    - ECHO %Build%
     - ./ci/windows-prepare.bat
     - ./ci/windows-build.bat
   tags:
