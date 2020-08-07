@@ -49,6 +49,7 @@ windows:build:
   extends:
     - .only-branches
   stage: build
+  allow_failure: false
   script:
     - ./ci/windows-prepare.bat
     - ./ci/windows-build.bat
@@ -59,7 +60,6 @@ windows:build:
     paths:
         - build/
     expire_in: 1 week
-
   cache:
     paths:
         - build/
