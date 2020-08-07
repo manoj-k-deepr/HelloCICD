@@ -163,3 +163,8 @@ pages:
   artifacts:
     paths:
     - public
+
+
+
+#..............Extra commands............
+# Mark Forcefully build failed in windows use "EXIT /B Exit_code
