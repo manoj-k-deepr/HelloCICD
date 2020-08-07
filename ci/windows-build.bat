@@ -8,7 +8,7 @@ SET Path=%PATH%;C:\Program Files\Git\bin;
 
 ECHO %PATH%
 
-git --version 1231234
+git 1223 --version
 qmake --version
 
 exit 0
