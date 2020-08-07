@@ -11,3 +11,5 @@ ECHO %PATH%
 git --version
 qmake --version
 
+exit
+
