@@ -71,7 +71,6 @@ windows:test:
   script:
     - ./ci/windows-test.bat
   needs: ["windows:build"]
-  when: on_success
 
 windows:coverage:
   extends:
@@ -80,7 +79,6 @@ windows:coverage:
   script:
     - ./ci/windows-coverage.bat
   needs: ["windows:test"]
-  when: on_success
   artifacts:
     paths:
         - cppreport/
@@ -95,7 +93,6 @@ windows:deploy:
   script: 
     - ./ci/windows-build.bat
   needs: ["windows:coverage"]
-  when: on_success
 
 #-----------  Job Informations----------
 # Type:       Build: release/debug
