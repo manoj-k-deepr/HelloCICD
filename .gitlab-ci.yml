@@ -21,8 +21,9 @@ Hello Docker:
     - docker info
     - docker run hello-world
   tags:
-    - docker
-
+    - linux
+    - deepranalytics
+    
 #before_script:
 #  - docker info
 
