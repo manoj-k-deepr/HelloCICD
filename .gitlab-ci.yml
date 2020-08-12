@@ -5,36 +5,7 @@ stages:
   - deploy
 
 
-# Docker-in-Docker workflow with Docker executor
 Hello Docker:
-  stage: build
-  image: docker
-  services:
-  - docker:dind
-  variables:
-    DOCKER_HOST: tcp://docker:2375/
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
-    # https://gitlab.com/gitlab-org/gitlab-foss/-/issues/64959
-  script:
-    - whoami
-    - docker info
-    - docker run hello-world
-  tags:
-    - docker
-    - deepranalytics
-
-Hello Doker 2:
-  stage: build
-  script:
-    - whoami
-    - docker info
-    - docker run hello-world
-  tags:
-    - linux
-    - deepranalytics
-
-Run in Docker:
   stage: build
   image: ubuntu:14.04
   services:
