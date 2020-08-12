@@ -13,4 +13,4 @@ qmake --version
 
 cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_BUILD_TYPE=Debug
 
-cmake --build . --config Debug--target HelloCICD -- /maxcpucount:10
+cmake --build . --config Debug --target HelloCICD -- /maxcpucount:10
