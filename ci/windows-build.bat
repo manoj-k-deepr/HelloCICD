@@ -11,4 +11,6 @@ ECHO %PATH%
 git --version
 qmake --version
 
-make -j5
+cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_BUILD_TYPE=Debug
+
+cmake --build . --config Debug--target HelloCICD -- /maxcpucount:10
