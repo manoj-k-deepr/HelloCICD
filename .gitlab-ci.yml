@@ -31,7 +31,7 @@ Hello Doker 2:
     - docker info
     - docker run hello-world
   tags:
-    - docker
+    - linux
     - deepranalytics
 
 Run in Docker:
