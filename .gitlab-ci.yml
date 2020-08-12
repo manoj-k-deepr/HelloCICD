@@ -38,9 +38,9 @@ Run in Docker:
   image: ubuntu:14.04
   script:
     - whoami
-    - chmod +x "ci/linux-prepare.sh"
+    - chmod +x "ci/docker-prepare.sh"
     - chmod +x "ci/linux-build.sh"
-    - "ci/linux-prepare.sh"
+    - "ci/docker-prepare.sh"
     - "ci/linux-build.sh"
   tags:
     - docker
