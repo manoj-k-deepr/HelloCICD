@@ -24,6 +24,15 @@ Hello Docker:
     - docker
     - deepranalytics
 
+Hello Doker 2:
+  stage: build
+  script:
+    - whoami
+    - docker info
+    - docker run hello-world
+  tags:
+    - docker
+    - deepranalytics
 
 Run in Docker:
   stage: build
