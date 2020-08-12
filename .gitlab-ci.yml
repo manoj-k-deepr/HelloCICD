@@ -27,7 +27,7 @@ Hello Docker:
 
 Run in Docker:
   stage: build
-  image: docker
+  image: ubuntu:14.04
   services:
   - docker:dind
   variables:
@@ -35,7 +35,6 @@ Run in Docker:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
     # https://gitlab.com/gitlab-org/gitlab-foss/-/issues/64959
-  image: ubuntu:14.04
   script:
     - whoami
     - chmod +x "ci/docker-prepare.sh"
