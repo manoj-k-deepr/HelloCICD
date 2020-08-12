@@ -29,7 +29,7 @@ Run in Docker:
   stage: build
   image: ubuntu:14.04
   services:
-  - docker:dind
+  - gcc:latest
   variables:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
