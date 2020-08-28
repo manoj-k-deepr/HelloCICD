@@ -1,0 +1,27 @@
+
+stages:
+  - build
+  - test
+  - coverage
+  - deploy
+
+ .only-branches:
+  only:
+    refs:
+      - master
+      - schedules
+      - merge_requests
+
+windows:build:
+  extends:
+    - .only-branches
+  stage: build
+  script:
+    - ./ci/windows-prepare.bat
+    - ./ci/windows-build.bat
+  tags:
+     - windows
+     - deepranalytics
+  artifacts:
+    paths:
+        - build/
