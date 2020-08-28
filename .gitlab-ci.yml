@@ -35,7 +35,9 @@ windows:test:
   script:
     - ./ci/windows-test.bat
   needs: ["windows:build"]
-
+  tags:
+     - windows
+     - deepranalytics
 
 windows:coverage:
   extends:
@@ -50,6 +52,9 @@ windows:coverage:
   cache:
     paths:
       - cppreport/
+  tags:
+     - windows
+     - deepranalytics
 
 windows:deploy:
   extends:
@@ -58,4 +63,6 @@ windows:deploy:
   script: 
     - ./ci/windows-build.bat
   needs: ["windows:coverage", "windows:build"]
-
+  tags:
+     - windows
+     - deepranalytics
