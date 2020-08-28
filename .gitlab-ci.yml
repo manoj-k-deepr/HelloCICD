@@ -4,3 +4,35 @@ stages:
   - test
   - coverage
   - deploy
+
+.only-branches:
+  only:
+    refs:
+      - master
+      - schedules
+      - devops
+      - merge_requests 
+
+#some comment 2
+#-----------  Job Informations----------
+# Type:       Build: release/debug
+# OS:         windows
+# Compiler:   vs2017
+
+windows:build:
+  extends:
+    - .only-branches
+  stage: build
+  script:
+    - ./ci/windows-prepare.bat
+    - ./ci/windows-build.bat
+  tags:
+     - windows
+     - deepranalytics
+  artifacts:
+    paths:
+        - build/
+    expire_in: 1 week
+  cache:
+    paths:
+        - build/
