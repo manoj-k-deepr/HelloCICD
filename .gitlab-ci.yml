@@ -5,7 +5,7 @@ stages:
   - coverage
   - deploy
 
- .only-branches:
+.only-branches:
   only:
     refs:
       - master
