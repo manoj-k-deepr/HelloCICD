@@ -25,3 +25,37 @@ windows:build:
   artifacts:
     paths:
         - build/
+    expire_in: 1 day
+
+
+windows:test:
+  extends:
+    - .only-branches
+  stage: test
+  script:
+    - ./ci/windows-test.bat
+  needs: ["windows:build"]
+
+
+windows:coverage:
+  extends:
+    - .only-branches
+  stage: coverage
+  script:
+    - ./ci/windows-coverage.bat
+  needs: ["windows:test"]
+  artifacts:
+    paths:
+        - cppreport/
+  cache:
+    paths:
+      - cppreport/
+
+windows:deploy:
+  extends:
+    - .only-branches
+  stage: deploy
+  script: 
+    - ./ci/windows-build.bat
+  needs: ["windows:coverage", "windows:build"]
+
