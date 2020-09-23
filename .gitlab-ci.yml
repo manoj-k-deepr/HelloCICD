@@ -12,57 +12,76 @@ stages:
       - schedules
       - merge_requests
 
-windows:build:
-  extends:
-    - .only-branches
+Hello Docker:
   stage: build
+  image: deepr/devopsubuntu:latest
+  services:
+  - gcc:latest
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+    # https://gitlab.com/gitlab-org/gitlab-foss/-/issues/64959
   script:
-    - ./ci/windows-prepare.bat
-    - ./ci/windows-build.bat
+    - whoami
+    - chmod +x "ci/docker-prepare.sh"
+    - chmod +x "ci/linux-build.sh"
+    - "ci/linux-build.sh"
   tags:
-     - windows
-     - deepranalytics
-  artifacts:
-    paths:
-        - build/
-    expire_in: 1 day
+    - docker
+    - deepranalytics
+
+# windows:build:
+#   extends:
+#     - .only-branches
+#   stage: build
+#   script:
+#     - ./ci/windows-prepare.bat
+#     - ./ci/windows-build.bat
+#   tags:
+#      - windows
+#      - deepranalytics
+#   artifacts:
+#     paths:
+#         - build/
+#     expire_in: 1 day
 
 
-windows:test:
-  extends:
-    - .only-branches
-  stage: test
-  script:
-    - ./ci/windows-test.bat
-  needs: ["windows:build"]
-  tags:
-     - windows
-     - deepranalytics
+# windows:test:
+#   extends:
+#     - .only-branches
+#   stage: test
+#   script:
+#     - ./ci/windows-test.bat
+#   needs: ["windows:build"]
+#   tags:
+#      - windows
+#      - deepranalytics
 
-windows:coverage:
-  extends:
-    - .only-branches
-  stage: coverage
-  script:
-    - ./ci/windows-coverage.bat
-  needs: ["windows:test"]
-  artifacts:
-    paths:
-        - cppreport/
-  cache:
-    paths:
-      - cppreport/
-  tags:
-     - windows
-     - deepranalytics
+# windows:coverage:
+#   extends:
+#     - .only-branches
+#   stage: coverage
+#   script:
+#     - ./ci/windows-coverage.bat
+#   needs: ["windows:test"]
+#   artifacts:
+#     paths:
+#         - cppreport/
+#   cache:
+#     paths:
+#       - cppreport/
+#   tags:
+#      - windows
+#      - deepranalytics
 
-windows:deploy:
-  extends:
-    - .only-branches
-  stage: deploy
-  script: 
-    - ./ci/windows-build.bat
-  needs: ["windows:coverage", "windows:build"]
-  tags:
-     - windows
-     - deepranalytics
+# windows:deploy:
+#   extends:
+#     - .only-branches
+#   stage: deploy
+#   script: 
+#     - ./ci/windows-build.bat
+#   needs: ["windows:coverage", "windows:build"]
+#   tags:
+#      - windows
+#      - deepranalytics
