@@ -15,8 +15,6 @@ stages:
 Hello Docker:
   stage: build
   image: deepr/devopsubuntu:latest
-  services:
-  - gcc:latest
   variables:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
@@ -24,7 +22,7 @@ Hello Docker:
     # https://gitlab.com/gitlab-org/gitlab-foss/-/issues/64959
   script:
     - whoami
-    - chmod +x "ci/docker-prepare.sh"
+    # - chmod +x "ci/docker-prepare.sh"
     - chmod +x "ci/linux-build.sh"
     - "ci/linux-build.sh"
   tags:
