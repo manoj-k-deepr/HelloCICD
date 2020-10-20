@@ -1,1 +1,1 @@
-[![Coverage report](https://gitlab.com/gitlab-org/gitlab-ce/badges/master/coverage.svg?job=coverage)](https://deepranalytics.gitlab.io/HelloCICD/)
+![C/C++ CI](https://github.com/manoj-k-deepr/HelloCICD/workflows/C/C++%20CI/badge.svg)
