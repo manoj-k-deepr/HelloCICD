@@ -16,7 +16,6 @@ jobs:
 #       run: cd build && ctest
 
   build-windows:
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
