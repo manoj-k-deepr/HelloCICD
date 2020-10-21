@@ -24,6 +24,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+      with:
+        token: ${{ secrets.REPO_SCOPED_TOKEN }}
     - name: configure
       run: mkdir -p build && cd build && cmake ..
     - name: build
