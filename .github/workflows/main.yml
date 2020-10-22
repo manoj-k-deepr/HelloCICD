@@ -3,17 +3,28 @@ name: C/C++ CI
 on: [push]
 
 jobs:
-#   build-ubuntu:
+  build-ubuntu:
 
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v1
-#     - name: configure
-#       run: mkdir -p build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ..
-#     - name: build
-#       run: cmake --build build
-#     - name: test
-#       run: cd build && ctest
+    runs-on: [self-hosted]
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        image_name: hello-world
+        # Server address of Docker registry. If not set then will default to Docker Hub
+#         registry: # optional
+#         # Username used to log against the Docker registry
+#         username: # optional
+#         # Password or personal access token used to log against the Docker registry
+#         password: # optional
+#         # Log out from the Docker registry at the end of a job
+#         logout: # optional, default is true
+    
+    - name: configure
+      run: mkdir -p build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ..
+    - name: build
+      run: cmake --build build
+    - name: test
+      run: cd build && ctest
 
   build-windows:
     runs-on: [self-hosted, Windows, X64, deepr]
