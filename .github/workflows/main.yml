@@ -16,11 +16,9 @@ jobs:
 #       run: cd build && ctest
 
   build-windows:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [self-hosted, Windows, X64, deepr]
-    
+    runs-on: [self-hosted, Windows, X64, deepr]
+
+
     steps:
     - uses: actions/checkout@v1
       with:
