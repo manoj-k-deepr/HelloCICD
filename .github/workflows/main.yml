@@ -26,7 +26,8 @@ jobs:
       with:
         token: ${{ secrets.REPO_SCOPED_TOKEN }}
     - name: configure
-      run: mkdir -p build && cd build && cmake ..
+      run: ./ci/windows-build.bat
+#       run: mkdir -p build && cd build && cmake ..
     - name: build
       run: cmake --build build --config Debug
     - name: test
