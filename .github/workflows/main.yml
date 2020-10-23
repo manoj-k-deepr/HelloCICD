@@ -13,15 +13,19 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}         
 
     steps:
-      - uses: actions/checkout@v1
       - name: configure
         run: gcc --version
+      
+      # step 2: checkout repository code
+      - name: Checkout code into workspace directory
+        uses: actions/checkout@v1
+        
       - name: build
         run: | 
           echo "Build"
           whoami
-          "./ci/linux-build.sh"
-          "./ci/linux-prepare.sh" 
+          chmod +x "./ci/linux-build.sh"
+          "./ci/linux-build.sh" 
 
       - name: test
         run: echo "Test"
