@@ -19,8 +19,8 @@ jobs:
       run: | 
        echo "Build"
        whoami
-       "ci/linux-build.sh"
-       "ci/linux-prepare.sh" 
+       "./ci/linux-build.sh"
+       "./ci/linux-prepare.sh" 
 
     - name: test
       run: echo "Test"
