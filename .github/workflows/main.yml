@@ -33,7 +33,6 @@ jobs:
   build-windows:
     runs-on: [self-hosted, Windows, X64, deepr]
 
-
     steps:
     - uses: actions/checkout@v1
       with:
