@@ -6,21 +6,19 @@ jobs:
   build-ubuntu:
 
     runs-on: [self-hosted, Linux, X64, deepr]
-#     container:
-#        image: deepr/devopsubuntu:latest
-#        credentials:
-#           username: ${{ secrets.DOCKER_USERNAME }}
-#           password: ${{ secrets.DOCKER_PASSWORD }}         
 
-    steps:
-      - uses: actions/checkout@v1
-        with:
+    container:
+       image: deepr/devopsubuntu:latest
+       credentials:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          registry: docker.pkg.github.com
-          image: deepr/devopsubuntu:latest
-          run: echo "hello world"
-      
+
+    
+    steps:     
+      - uses: actions/checkout@v1
+        with:
+          docker-image: deepr/devopsubuntu:latest
+       
       - name: configure
         run: gcc --version
              
