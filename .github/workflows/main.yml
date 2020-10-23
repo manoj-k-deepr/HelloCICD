@@ -22,7 +22,7 @@ jobs:
 #         logout: # optional, default is true
     
     - name: configure
-      run: echo "Configure"
+      run: gcc --version
     - name: build
       run: echo "Build"
     - name: test
