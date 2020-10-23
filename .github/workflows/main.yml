@@ -6,19 +6,12 @@ jobs:
   build-ubuntu:
 
     runs-on: [self-hosted, Linux, X64, deepr]
-    container: ubuntu:latest
 
     steps:
-    - uses: docker://ubuntu:latest
-#       with:
-        # Server address of Docker registry. If not set then will default to Docker Hub
-#         registry: # optional
-#         # Username used to log against the Docker registry
-#         username: # optional
-#         # Password or personal access token used to log against the Docker registry
-#         password: # optional
-#         # Log out from the Docker registry at the end of a job
-#         logout: # optional, default is true
+    - uses: docker://deepr/devopsubuntu:latest
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
     
     - name: configure
       run: gcc --version
