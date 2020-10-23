@@ -8,14 +8,17 @@ jobs:
     runs-on: [self-hosted, Linux, X64, deepr]
     container:
        image: deepr/devopsubuntu:latest
-       env:
-           DOCKERHUB_USER: ${{ secrets.DOCKER_USERNAME }}
-           DOCKERHUB_PASS: ${{ secrets.DOCKER_PASSWORD }}
-           DOCKERHUB_EMAIL: manoj.kumar@deepranalytics.com
+       credentials:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}         
+#        env:
+#            DOCKERHUB_USER: ${{ secrets.DOCKER_USERNAME }}
+#            DOCKERHUB_PASS: ${{ secrets.DOCKER_PASSWORD }}
+#            DOCKERHUB_EMAIL: manoj.kumar@deepranalytics.com
     steps:
 #     - uses: docker://deepr/devopsubuntu:latest
 #       with:
-#         login-server: index.docker.io
+#         registry: index.docker.io
 #         username: ${{ secrets.DOCKER_USERNAME }}
 #         password: ${{ secrets.DOCKER_PASSWORD }}
     
