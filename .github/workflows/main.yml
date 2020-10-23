@@ -11,21 +11,17 @@ jobs:
        credentials:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}         
-#        env:
-#            DOCKERHUB_USER: ${{ secrets.DOCKER_USERNAME }}
-#            DOCKERHUB_PASS: ${{ secrets.DOCKER_PASSWORD }}
-#            DOCKERHUB_EMAIL: manoj.kumar@deepranalytics.com
-    steps:
-#     - uses: docker://deepr/devopsubuntu:latest
-#       with:
-#         registry: index.docker.io
-#         username: ${{ secrets.DOCKER_USERNAME }}
-#         password: ${{ secrets.DOCKER_PASSWORD }}
-    
+
+    steps:  
     - name: configure
       run: gcc --version
     - name: build
-      run: echo "Build"
+      run: | 
+       echo "Build"
+       whoami
+       "ci/linux-build.sh"
+       "ci/linux-prepare.sh" 
+
     - name: test
       run: echo "Test"
 
