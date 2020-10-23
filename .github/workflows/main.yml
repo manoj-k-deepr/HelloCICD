@@ -12,18 +12,19 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}         
 
-    steps:  
-    - name: configure
-      run: gcc --version
-    - name: build
-      run: | 
-       echo "Build"
-       whoami
-       "./ci/linux-build.sh"
-       "./ci/linux-prepare.sh" 
+    steps:
+      - uses: actions/checkout@v1
+      - name: configure
+        run: gcc --version
+      - name: build
+        run: | 
+          echo "Build"
+          whoami
+          "./ci/linux-build.sh"
+          "./ci/linux-prepare.sh" 
 
-    - name: test
-      run: echo "Test"
+      - name: test
+        run: echo "Test"
 
   build-windows:
     runs-on: [self-hosted, Windows, X64, deepr]
