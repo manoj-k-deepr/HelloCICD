@@ -1,24 +1,25 @@
 name: C/C++ CI
 
 on: [push]
-env:
-  DOCKER_USER_OPTION: '$UID:$GID'
-  
+ 
 
 jobs:
   build-ubuntu:
 
     runs-on: [self-hosted, Linux, X64, deepr]
+
     container:
        image: deepr/devopsubuntu:latest
        credentials:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-
-    steps:        
+    
+    steps:     
       - name: Pulling git dir..
         uses: actions/checkout@v2
-        
+        with:
+          image: deepr/devopsubuntu:latest
+      
       - name: configure
         run: |
           gcc --version
