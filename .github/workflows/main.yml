@@ -15,9 +15,7 @@ jobs:
 
     
     steps:  
-      - name: checkout
-        uses: actions/checkout@v1
-              
+             
       - name: configure
         run: |
           gcc --version
