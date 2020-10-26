@@ -14,9 +14,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
     
-    steps:     
-      - uses: actions/checkout@v1  
-           
+    steps:  
+      - name: checkout
+        uses: actions/checkout@v1
+              
       - name: configure
         run: |
           gcc --version
