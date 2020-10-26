@@ -15,12 +15,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-    steps:
-      - uses: actions/checkout@v2
-        env:
-          DOCKER_USER_OPTION: '0:0'  
-      - name: configure
+    steps:        
+      - name: Pulling git dir..
+        uses: actions/checkout@v2
         
+      - name: configure
         run: |
           gcc --version
           pwd
