@@ -15,17 +15,18 @@ jobs:
 
     
     steps:     
-      - uses: actions/checkout@v1
-        with:
-          docker-image: deepr/devopsubuntu:latest
-       
+      - uses: actions/checkout@v1  
+           
       - name: configure
-        run: gcc --version
-             
+        run: |
+          gcc --version
+          pwd
+     
       - name: build
         run: | 
           echo "Build"
           whoami
+          pwd
           chmod +x "./ci/linux-build.sh"
           "./ci/linux-build.sh" 
 
