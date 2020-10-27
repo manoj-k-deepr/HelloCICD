@@ -37,7 +37,7 @@ jobs:
       - name: Clean Workspace
         run: |
           echo "Cleaning up"
-          sudo rm -rf "${{ github.workspace }}"
+          rm -rf "${{ github.workspace }}"
           
   build-windows:
     runs-on: [self-hosted, Windows, X64, deepr]
