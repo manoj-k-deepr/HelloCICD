@@ -15,16 +15,14 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
     
     steps:     
-      - name: Pulling git dir..
-        uses: actions/checkout@v2
-        with:
-          image: deepr/devopsubuntu:latest
-      
       - name: configure
         run: |
           gcc --version
           pwd
-     
+      
+      - name: Pulling git dir..
+        uses: actions/checkout@v2
+         
       - name: build
         run: | 
           echo "Build"
