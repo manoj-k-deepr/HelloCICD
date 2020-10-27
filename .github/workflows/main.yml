@@ -6,7 +6,7 @@ on: [push]
 jobs:
   build-ubuntu:
 
-    runs-on: [self-hosted, Linux, X64, deepr, deepr/devopsubuntu:latest]
+    runs-on: [self-hosted, Linux, X64, deepr]
 
     container:
        image: deepr/devopsubuntu:latest
