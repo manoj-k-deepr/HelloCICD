@@ -1,7 +1,8 @@
 name: C/C++ CI
 
 on: [push]
-# Puch changes
+# Push changes 1
+# Push change 2
 jobs:
   build-ubuntu:
 
