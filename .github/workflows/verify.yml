@@ -2,7 +2,6 @@ name: verify
 on: [push]
 
 # vERIFY oNE
-# vERIFY two
 
 jobs:
   cowsay:
