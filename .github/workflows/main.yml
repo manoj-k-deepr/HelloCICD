@@ -39,16 +39,16 @@ jobs:
           echo "Cleaning up"
           rm -rf "${{ github.workspace }}"
           
-  build-windows:
-    runs-on: [self-hosted, Windows, X64, deepr]
+#   build-windows:
+#     runs-on: [self-hosted, Windows, X64, deepr]
 
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.REPO_SCOPED_TOKEN }}
-    - name: configure
-      run: echo "Configure complete"
-    - name: build
-      run: ./ci/windows-build.bat
-    - name: test
-      run: echo "Test Complete"
+#     steps:
+#     - uses: actions/checkout@v2
+#       with:
+#         token: ${{ secrets.REPO_SCOPED_TOKEN }}
+#     - name: configure
+#       run: echo "Configure complete"
+#     - name: build
+#       run: ./ci/windows-build.bat
+#     - name: test
+#       run: echo "Test Complete"
