@@ -1,8 +1,6 @@
 name: verify
 on: [push]
 
-# vERIFY oNE
-
 jobs:
   cowsay:
     runs-on: self-hosted
