@@ -3,9 +3,7 @@ name: C/C++ CI
 on: [push]
 jobs:
   build-ubuntu:
-
     runs-on: [self-hosted, Linux, X64, deepr]
-
     container:
        image: deepr/devopsubuntu:latest
        credentials:
