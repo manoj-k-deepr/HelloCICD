@@ -8,8 +8,7 @@ jobs:
        image: deepr/devopsubuntu:latest
        credentials:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-    
+          password: ${{ secrets.DOCKER_PASSWORD }}   
 
     steps:     
       - name: configure
