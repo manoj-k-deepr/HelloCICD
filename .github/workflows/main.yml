@@ -34,7 +34,8 @@ jobs:
         run: |
           echo "Cleaning up"
           rm -rf "${{ github.workspace }}"
-          
+
+
 #   build-windows:
 #     runs-on: [self-hosted, Windows, X64, deepr]
 
