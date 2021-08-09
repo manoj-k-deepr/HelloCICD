@@ -5,6 +5,7 @@ pipelines:
       - name: p1_s1
         type: Bash
         configuration:
+          gitProvider: GitHub
         execution:
           onExecute:
             # Data from input resources is available as env variables in the step
