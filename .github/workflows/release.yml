@@ -46,4 +46,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Installer
-          path: bin/Release/Scanner-*.exe
+          path: |
+            bin/Release/Scanner-*.exe
+            Scanner.pdb
