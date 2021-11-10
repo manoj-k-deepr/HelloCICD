@@ -1,6 +1,6 @@
 # Prerequisites
 *.d
-conan*
+
 
 # Compiled Object files
 *.slo

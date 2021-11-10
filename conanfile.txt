@@ -1,0 +1,14 @@
+[requires]
+ScannerAPI/1.0.2@dev/beta
+cctz/2.3
+sentry-native/0.4.12
+
+[generators]
+qmake
+
+[options]
+aws-sdk-cpp:shared=False
+
+[imports]
+bin, ScannerAPI.dll -> ./bin/Release
+bin, ScannerAPI_d.dll -> ./bin/Debug
