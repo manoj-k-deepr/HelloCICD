@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Disabled
 
 on: [push]
 jobs:
