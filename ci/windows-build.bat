@@ -1,16 +1,33 @@
 CALL  "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
 
-SET Path=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\Hostx64\x64;
-SET Path=%PATH%;C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17763.0\um\arm64;
-SET Path=%PATH%;C:\Qt\Qt5.12.1\5.12.1\msvc2017_64\bin;
-SET Path=%PATH%;C:\Qt\Qt5.12.1\Tools\QtCreator\bin;
-SET Path=%PATH%;C:\Program Files\Git\bin;
+@REM SSet Jom Path
+SET Path=%PATH%;C:\Qt\Qt5.11.3\Tools\QtCreator\bin;
+SET Path=%PATH%;C:\Program Files (x86)\NSIS\Bin;
+SET Path=%PATH%;C:\Qt\Qt5.11.3\5.11.3\msvc2017_64\bin;
 
 ECHO %PATH%
 
 git --version
 qmake --version
+conan --version
+conan remote list
 
-cmake -G "Visual Studio 15 2017 Win64" -DCMAKE_BUILD_TYPE=Debug
+conan install . -g qmake --profile conan/WRelease --build=missing
 
-cmake --build . --config Debug --target HelloCICD -- /maxcpucount:10
+qmake scanner.pro -spec win32-msvc "CONFIG+=release" && jom.exe qmake_all
+jom.exe -j8
+
+cd bin
+cd Release
+cd
+
+SET F="Scanner.exe"
+
+IF EXIST %F% (
+  ECHO %F% is existing
+) ELSE (
+  ECHO %F% is not existing
+  EXIT 1
+)
+
+windeployqt Scanner.exe
