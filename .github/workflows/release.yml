@@ -23,7 +23,7 @@ jobs:
     - name: Build
       run: |
         echo "🍏 Building"
-        set CONAN_REVISIONS_ENABLED=1
+        conan config set general.revisions_enabled=1
         conan remote add common https://deepranalytics.jfrog.io/artifactory/api/conan/deepr-common --force
         conan user ${{ secrets.CONAN_USERNAME }} -p ${{ secrets.CONAN_PASSWORD }} -r common
         conan user
