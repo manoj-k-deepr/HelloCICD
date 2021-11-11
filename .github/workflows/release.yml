@@ -24,31 +24,19 @@ jobs:
         conan user ${{ secrets.CONAN_USERNAME }} -p ${{ secrets.CONAN_PASSWORD }} -r common
         conan remote list
         
-  build:
-    runs-on: [self-hosted, deepr]
-    needs: configure
-    steps:
     - name: Build
       run: |
         echo "🍏 Building"
         ./ci/windows-build.bat
 
-  create-installer:
-    runs-on: [self-hosted, deepr]
-    needs: build
-    steps:
     - name: Create Installer
       run: |
         echo "🍏 Create Installer"
         ./ci/windows-package.bat
 
-  deploy:
-    runs-on: [self-hosted, deepr]
-    needs: create-installer
-    steps:
-      - name: Upload Installer
-        uses: actions/upload-artifact@v2
-        with:
+    - name: Upload Installer
+      uses: actions/upload-artifact@v2
+      with:
           name: Installer
           path: |
             bin/Release/Scanner-*.exe
