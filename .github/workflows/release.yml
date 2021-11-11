@@ -19,10 +19,10 @@ jobs:
     - name: configure
       run: |
         echo "🍏 This job's status is ${{ job.status }}."
-        Set CONAN_REVISIONS_ENABLED=1
+        set CONAN_REVISIONS_ENABLED=1
         conan remote add common https://deepranalytics.jfrog.io/artifactory/api/conan/deepr-common
         conan user -p ${{ secrets.CONAN_PASSWORD }} -r common ${{ secrets.CONAN_USERNAME }}
-
+        
   build:
     runs-on: [self-hosted, deepr]
     needs: configure
