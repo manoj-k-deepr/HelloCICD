@@ -12,6 +12,8 @@ qmake --version
 conan --version
 conan remote list
 
+conan user
+
 conan install . -g qmake --profile conan/WRelease --build=missing
 
 qmake scanner.pro -spec win32-msvc "CONFIG+=release" && jom.exe qmake_all
