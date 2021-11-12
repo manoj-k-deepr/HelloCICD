@@ -36,7 +36,7 @@ jobs:
         cd
 
     - name: Path
-      run: cd
+      run: pwd
         
     - name: Upload Installer
       uses: actions/upload-artifact@v2
@@ -46,8 +46,8 @@ jobs:
             bin/Release/Scanner-*.exe
             bin/Release/Scanner.pdb
 
-    - name: Path
+    - name: Publish
       run: |
         git clone https://github.com/manoj-k-deepr/HelloCICDRelease.git
         cd HelloCICDRelease
-        cd
+        pwd
