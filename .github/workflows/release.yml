@@ -47,6 +47,8 @@ jobs:
             bin/Release/Scanner.pdb
 
     - name: Publish
+      env:
+          GITHUB_TOKEN: "${{ secrets.RELEASE_REPO_SECRET }}"
       run: |
         git clone https://github.com/manoj-k-deepr/HelloCICDRelease.git
         cd HelloCICDRelease
