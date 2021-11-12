@@ -14,7 +14,7 @@
 !define QT_PATH "C:\Qt\Qt5.11.3\5.11.3\msvc2017_64\bin"
 !define QT_CREATOR_PATH "C:\Qt\Qt5.11.3\5.11.3\msvc2017_64\bin"
 
-!define INSTALLER_NAME "../bin/Release/Scanner-${MyTIMESTAMP}.exe"
+!define INSTALLER_NAME "../bin/Release/Scanner-Installer.exe"
 !define MAIN_APP_EXE "scanner.exe"
 !define INSTALL_TYPE "SetShellVarContext all"
 !define REG_ROOT "HKLM"
