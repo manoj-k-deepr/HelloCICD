@@ -51,3 +51,5 @@ jobs:
         git clone https://github.com/manoj-k-deepr/HelloCICDRelease.git
         cd HelloCICDRelease
         pwd
+        hub release create -a "../bin/Release/Scanner.pdb" -m "Current Master Build: ${FILENAME}" -p "1.0.1"
+
