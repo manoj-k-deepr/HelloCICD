@@ -33,7 +33,11 @@ jobs:
       run: |
         echo "🍏 Create Installer"
         ./ci/windows-package.bat
+        cd
 
+    - name: Path
+      run: cd
+        
     - name: Upload Installer
       uses: actions/upload-artifact@v2
       with:
