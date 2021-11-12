@@ -39,6 +39,5 @@ jobs:
       with:
           name: Installer
           path: |
-            cd
             bin/Release/Scanner-*.exe
             bin/Release/Scanner.pdb
