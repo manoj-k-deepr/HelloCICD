@@ -53,8 +53,7 @@ jobs:
         git clone https://github.com/manoj-k-deepr/HelloCICDRelease.git
         cd HelloCICDRelease
         pwd
-        git tag -l
-        git tag -l | grep -q 'string' && echo 'matched'
+        git tag -l | grep -q '1.0.1' && echo 'matched'
         echo "hub release create -a "../bin/Release/Scanner-Installer.exe" -m "Scanner Build: 1.0.3" -p "1.0.3""
       shell: bash
 
