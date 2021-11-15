@@ -1,12 +1,28 @@
+#!/bin/bash
+
+read -r ver < ${PWD}/../version.txt
+
 git clone https://github.com/manoj-k-deepr/HelloCICDRelease.git
 cd HelloCICDRelease
 pwd
 
-if[ git tag -l | grep -q '1.0.1' ]
-then
-    echo 'matched'
+array=$(git tag -l)
+
+match=0
+
+for value in $array
+do
+   if [[ "$value" = "$ver" ]]; then
+       echo "$value";
+       echo "$ver";
+       match=1
+   fi
+done
+
+if [  $match = 1 ]; then
+    echo 'Contain'
 else
-    echo 'Not matched'
+    echo 'Not Contain'
+    hub release create -a "../bin/Release/Scanner-Installer.exe" -m "Scanner Build:  "$ver"" -p "$ver"
 fi
 
-echo "hub release create -a "../bin/Release/Scanner-Installer.exe" -m "Scanner Build: 1.0.3" -p "1.0.3""
