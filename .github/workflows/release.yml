@@ -53,6 +53,6 @@ jobs:
         git clone https://github.com/manoj-k-deepr/HelloCICDRelease.git
         cd HelloCICDRelease
         pwd
-        hub release show
+        git tag -l
         echo "hub release create -a "../bin/Release/Scanner-Installer.exe" -m "Scanner Build: 1.0.3" -p "1.0.3""
 
