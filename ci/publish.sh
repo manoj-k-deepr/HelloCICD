@@ -1,3 +1,4 @@
+#!/bin/bash
 
 read -r ver < ${PWD}/../version.txt
 
