@@ -50,6 +50,6 @@ jobs:
       env:
           GITHUB_TOKEN: "${{ secrets.RELEASE_REPO_SECRET }}"
       run: |
-        .\ci\publish.sh
+        ./ci/publish.sh
       shell: bash
 
