@@ -23,6 +23,6 @@ if [  $match = 1 ]; then
     echo 'Contain'
 else
     echo 'Not Contain'
-    hub release create -a "../bin/Release/Scanner-Installer.exe" -m "Scanner Build: " -p "$ver"
+    hub release create -a "../bin/Release/Scanner-Installer.exe" -m "Scanner Build: " -p $ver
 fi
 
