@@ -1,6 +1,7 @@
 #!/bin/bash
 
-read -r ver < ${PWD}/../version.txt
+echo ${PWD}
+read -r ver < ${PWD}/version.txt
 
 git clone https://github.com/manoj-k-deepr/HelloCICDRelease.git
 cd HelloCICDRelease
@@ -23,6 +24,6 @@ if [  $match = 1 ]; then
     echo 'Contain'
 else
     echo 'Not Contain'
-    hub release create -a "../bin/Release/Scanner-Installer.exe" -m "Scanner Build: " -p $ver
+    hub release create -a "../bin/Release/Scanner-Installer.exe" -m "Scanner Build: $ver" -p "$ver"
 fi
 
