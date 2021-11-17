@@ -3,7 +3,7 @@
 echo ${PWD}
 read -r ver < ${PWD}/version.txt
 
-git clone https://github.com/manoj-k-deepr/HelloCICDRelease.git
+git clone https://$GITHUB_TOKEN@github.com/manoj-k-deepr/HelloCICDRelease.git
 cd HelloCICDRelease
 pwd
 
