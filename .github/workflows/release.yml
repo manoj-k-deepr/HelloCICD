@@ -1,76 +1,55 @@
-name: OpenShift 
-
-env: 
-  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-  REGISTRY_USER: ${{ github.actor }}
-  REGISTRY_PASSWORD: ${{ github.token }}
-  APP_NAME: nationalparks
-  IMAGE_TAGS: latest ${{ github.sha }}
-
-  OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
-  OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
-  OPENSHIFT_NAMESPACE: "%PROJECT%"
-
-  APP_PORT: "8080"
-
-on:
-  # https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows
+name: Build Quarkus project on OpenShift
+on: 
   push: 
-    branches: [ master ]
+  
+jobs: 
+  install_runner: 
+    name: Install Runner 
+    runs-on: ubuntu-20.04 
 
-jobs:
-  build-and-push: 
-    name: Build and push to github container registry
-    runs-on: ubuntu-18.04
-    environment: development
+    steps: 
+      - name: Log in to OpenShift 
+        uses: redhat-actions/oc-login@v1 
+        with: 
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }} 
+          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }} 
+      
+      - uses: redhat-actions/openshift-actions-runner-installer@v1 
+        with: 
+          github_pat: ${{ secrets.GITHUB_PAT }}     # Personal access token with organization permissions
+          runner_location: redhat-actions                               # Install organization level runners
+          runner_image: quay.io/redhat-github-actions/java-runner-11    # Use our prebuilt Java runner image
+          runner_labels: openshift, java                                
+  
+  build-quarkus: 
+    name: Self Hosted Quarkus Build and Test
+    
+    runs-on: [ self-hosted, openshift, java ]             # Use the same labels we gave the runner above    
+    needs: install_runner                                 # Wait until the job above completes
 
-    outputs:
-        ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
-        SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
+    env:
+      WORKDIR: getting-started                  
 
     steps:
-    - name: Checkout
-      id: checkout
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v2                         # Checkout a java project to build
+        with:
+          repository: redhat-actions/quarkus-quickstarts
 
-   # https://github.com/redhat-actions/s2i-build#readme
-    - name: S2I Build 
-      id: build_image
-      uses: redhat-actions/s2i-build@v2
-      with:
-        path_context: '.'
-        builder_image: 'registry.access.redhat.com/ubi8/openjdk-11'
-        image: ${{ env.APP_NAME }}
-        tags: ${{ env.IMAGE_TAGS }}
+      # https://github.com/redhat-actions/quarkus-quickstarts/tree/master/getting-started#readme
 
-    # https://github.com/redhat-actions/push-to-registry#readme
-    - name: Push to Registry 
-      id: push-to-registry
-      uses: redhat-actions/push-to-registry@v2
-      with:
-        image: ${{ steps.build_image.outputs.image }}
-        tags: ${{ steps.build_image.outputs.tags }}
-        registry: ${{ env.IMAGE_REGISTRY }}
-        username: ${{ env.REGISTRY_USER }}
-        password: ${{ env.REGISTRY_PASSWORD }}
+      - name: Install and build
+        run: ./mvnw install -ntp
+        working-directory: ${{ env.WORKDIR }}
 
-    # The path the image was pushed to is now stored in ${{ steps.push-to-registry.outputs.registry-path }}
+      - name: Run tests
+        run: ./mvnw test
+        working-directory: ${{ env.WORKDIR }}
 
-    # https://github.com/redhat-actions/oc-login#readme
-    - name: Log in to OpenShift 
-      uses: redhat-actions/oc-login@v1
-      with:
-        openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
-        openshift_token: ${{ env.OPENSHIFT_TOKEN }}
-        insecure_skip_tls_verify: true
-        namespace: ${{ env.OPENSHIFT_NAMESPACE }}
-
-    # Run a script to create a new app or update the current one with the previously pushed container image
-    - run: |
-         chmod +x "${GITHUB_WORKSPACE}/.github/script.sh"
-         "${GITHUB_WORKSPACE}/.github/script.sh" ${{ env.APP_NAME }} ${{ env.IMAGE_REGISTRY }}/${{ steps.build_image.outputs.image }}:${{ github.sha }} ${{ env.OPENSHIFT_NAMESPACE }}
-
-
+      - name: Upload jar artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-jar-files.zip
+          path: ${{ env.WORKDIR }}/target/*.jar
 # name: C/C++ CI
 
 # on: [push, pull_request, workflow_dispatch]
