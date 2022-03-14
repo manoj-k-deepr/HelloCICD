@@ -39,7 +39,6 @@ jobs:
 
 
   tear-down-runners:
-    needs: install-repo-runner
     name: Tear down repository runners
     runs-on: ubuntu-20.04
     env:
@@ -50,6 +49,7 @@ jobs:
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
           openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+          namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}
           insecure_skip_tls_verify: true
 
       - run: helm ls
@@ -64,7 +64,6 @@ jobs:
           fi
       - run: helm uninstall ${{ env.HELM_RELEASE_NAME }}
         if: env.RELEASE_EXISTS == 'true'
-
 
 
 
