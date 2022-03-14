@@ -16,7 +16,7 @@ jobs:
       
       - uses: redhat-actions/openshift-actions-runner-installer@v1 
         with: 
-          github_pat: ${{ secrets.GITHUB_PAT }}     # Personal access token with organization permissions
+          github_pat: ${{ secrets.PAT }}     # Personal access token with organization permissions
           runner_location: redhat-actions                               # Install organization level runners
           runner_image: quay.io/redhat-github-actions/java-runner-11    # Use our prebuilt Java runner image
           runner_labels: openshift, java                                
