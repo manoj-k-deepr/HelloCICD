@@ -2,54 +2,65 @@ name: Build Quarkus project on OpenShift
 on: 
   push: 
   
-jobs: 
-  install_runner: 
-    name: Install Runner 
-    runs-on: ubuntu-20.04 
+jobs:
+  install-repo-runner:
+    runs-on: ubuntu-20.04
+    name: Install runner into this repository
+    strategy:
+      matrix:
+        runner_tag: [ v1, latest ]
+      fail-fast: false
+    steps:
+      - name: Checkout action
+        uses: actions/checkout@v2
 
-    steps: 
-      - name: Log in to OpenShift 
-        uses: redhat-actions/oc-login@v1 
-        with: 
-          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }} 
-          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }} 
-      
-      - uses: redhat-actions/openshift-actions-runner-installer@v1 
-        with: 
-          github_pat: ${{ secrets.PAT }}     # Personal access token with organization permissions
-          runner_location: redhat-actions                               # Install organization level runners
-          runner_image: quay.io/redhat-github-actions/java-runner-11    # Use our prebuilt Java runner image
-          runner_labels: openshift, java                                
-  
-  build-quarkus: 
-    name: Self Hosted Quarkus Build and Test
-    
-    runs-on: [ self-hosted, openshift, java ]             # Use the same labels we gave the runner above    
-    needs: install_runner                                 # Wait until the job above completes
+      - uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+          namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}
+          insecure_skip_tls_verify: true
 
-    env:
-      WORKDIR: getting-started                  
+      - name: Install self hosted runner into repository
+        id: install-runners
+        # uses: redhat-actions/openshift-actions-runner-installer@v1
+        # Test the checked-out version of this runner - a user would need the above 'uses'.
+        uses: ./
+        with:
+          # This token has 'repo' permissions
+          github_pat: ${{ secrets.PAT }}
+
+          helm_release_name: node-${{ matrix.runner_tag }}-runner
+
+          # Give the runner these two labels (which are required by the workflow below)
+          runner_labels: node
+
+          # Use this container image for the runner.
+          runner_image: quay.io/redhat-github-actions/node-runner-14
+
+          # Use this tag for the runner_image
+          runner_tag: ${{ matrix.runner_tag }}
+
+          helm_extra_args: |
+            --set-string secretName=github-pat-repo-${{ matrix.runner_tag }}
+          # Create 2 replicas so we can run jobs in parallel
+          runner_replicas: 2
+
+      - name: Echo outputs
+        shell: bash
+        run: |
+          echo "${{ toJSON(steps.install-runners.outputs) }}"
+  dispatch:
+    name: Dispatch another workflow
+    runs-on: ubuntu-20.04
+    needs: install-repo-runner
 
     steps:
-      - uses: actions/checkout@v2                         # Checkout a java project to build
+      - uses: peter-evans/repository-dispatch@v1.1.3
         with:
-          repository: redhat-actions/quarkus-quickstarts
-
-      # https://github.com/redhat-actions/quarkus-quickstarts/tree/master/getting-started#readme
-
-      - name: Install and build
-        run: ./mvnw install -ntp
-        working-directory: ${{ env.WORKDIR }}
-
-      - name: Run tests
-        run: ./mvnw test
-        working-directory: ${{ env.WORKDIR }}
-
-      - name: Upload jar artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-jar-files.zip
-          path: ${{ env.WORKDIR }}/target/*.jar
+          token: ${{ secrets.REPO_TOKEN }}
+          # See ./dispatched_example.yml for the type to use.
+          event-type: runner_ready
           
           
 # name: C/C++ CI
