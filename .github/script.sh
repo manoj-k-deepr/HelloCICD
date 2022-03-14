@@ -11,3 +11,5 @@ if [[ "$?" -eq 0 ]]; then
 else
     oc new-app $image --name $app_name -n $namespace
 fi
+
+
