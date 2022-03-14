@@ -6,10 +6,6 @@ jobs:
   install-repo-runner:
     runs-on: ubuntu-20.04
     name: Install runner into this repository
-    strategy:
-      matrix:
-        runner_tag: [ v1, latest ]
-      fail-fast: false
     steps:
       - name: Checkout action
         uses: actions/checkout@v2
@@ -39,7 +35,11 @@ jobs:
         run: |
           echo "${{ toJSON(steps.install-runners.outputs) }}"        
 
+
+
+
   tear-down-runners:
+    needs: install-repo-runner
     name: Tear down repository runners
     runs-on: ubuntu-20.04
     env:
@@ -64,7 +64,32 @@ jobs:
           fi
       - run: helm uninstall ${{ env.HELM_RELEASE_NAME }}
         if: env.RELEASE_EXISTS == 'true'
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # name: C/C++ CI
 
 # on: [push, pull_request, workflow_dispatch]
