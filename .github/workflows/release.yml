@@ -1,4 +1,4 @@
-name: Build Quarkus project on OpenShift
+name: OpenShift
 on: 
   push: 
   
@@ -57,7 +57,7 @@ jobs:
       # If we were running in the same workflow as the self-hosted runner installation,
       # we could use ${{ <job>.outputs.helm_release_name }} to get the release name
       - run: |
-          if helm status ${{ <job>.outputs.helm_release_name }}; then
+          if helm status ${{ env.HELM_RELEASE_NAME }}; then
             echo "RELEASE_EXISTS=true" >> $GITHUB_ENV
           else
             echo "Release ${{ env.HELM_RELEASE_NAME }} not found"
